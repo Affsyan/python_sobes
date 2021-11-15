@@ -22,4 +22,4 @@ def matrix(a, b):
 matrix_str = lambda x: ''.join(x)
 
 
-matrix(4, 5)
+matrix(4, 10)

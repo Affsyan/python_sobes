@@ -11,3 +11,7 @@ def print_directory_contents(sPath):
 вложенными структурами.
 """
 
+def print_directory_contents(sPath):
+    pass
+
+
