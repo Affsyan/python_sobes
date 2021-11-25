@@ -3,17 +3,46 @@
 <head>
 	<meta charset="utf-8">
 	<title>Главная</title>
-	<link rel="stylesheet" type="text/css" href="static/shopsite/style.css">
-	<link rel="stylesheet" href="static/shopsite/fonts/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="static/myproject/style.css">
+	<link rel="stylesheet" href="">
 </head>
 <body>
-    <nav class="top-menu">
-      <ul class="menu-main">
-        <li><a href="" class="current">Work</a></li>
-        <li><a href="">About</a></li>
-        <li><a href="">Blog</a></li>
-        <li><a href="">Contact</a></li>
-      </ul>
-    </nav>
+    <ul class="hr">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/admin">Админка</a></li>
+        <li><a href="#">Добавление товара</a></li>
+    </ul>
+    <table class="table">
+    <tr>
+        <th>
+            Имя товара
+        </th>
+        <th>
+            Цена
+        </th>
+        <th>
+            Колличество
+        </th>
+        <th>
+            Ед. измерения
+        </th>
+        <th>
+            Имя поставщика
+        </th>
+        <th>
+            Дата добавления
+        </th>
+    </tr>
+    {% for object in products %}
+    <tr>
+        <td>{{ object.name }}</td>
+        <td>{{ object.price }}</td>
+        <td>{{ object.quantity }}</td>
+        <td>{{ object.unit }}</td>
+        <td>{{ object.supplier_name }}</td>
+        <td>{{ object.data }}</td>
+    </tr>
+    {% endfor %}
+    </table>
 </body>
 </html>
