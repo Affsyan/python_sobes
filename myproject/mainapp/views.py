@@ -14,13 +14,25 @@ def category(request):
     return render(request=request, template_name='category.html', context=context)
 
 
-def category_filter(request, pk):
+def category_filter(request, pk=0):
     title = 'категории'
-    category_name = ProductCategory.objects.all()
-    products = ProductList.objects.prefetch_related('category').filter(name=category_name).all()
-    context = {
-        'title': title,
-        'products': products,
-        'category': category_name,
-    }
+    if pk == 0:
+        category_name = ProductCategory.objects.all()
+        products = ProductList.objects.prefetch_related('category').all()
+        context = {
+            'title': title,
+            'products': products,
+            'category': category_name,
+        }
+    else:
+        category_name = ProductCategory.objects.exclude(id=pk).all()
+        filter_name = ProductCategory.objects.filter(id=pk)
+        for _ in filter_name:
+            products = ProductList.objects.prefetch_related('category').filter(category=_)
+        context = {
+            'title': title,
+            'products': products,
+            'category': category_name,
+        }
+
     return render(request=request, template_name='category.html', context=context)
