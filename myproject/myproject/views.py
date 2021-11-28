@@ -4,7 +4,7 @@ from mainapp.models import ProductList
 
 def index(request):
     title = 'главная'
-    products = ProductList.objects.all()
+    products = ProductList.objects.prefetch_related('category').all()
     context = {
         'title': title,
         'products': products,

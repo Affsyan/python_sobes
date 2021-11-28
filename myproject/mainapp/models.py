@@ -1,6 +1,19 @@
 from django.db import models
 
 
+class ProductCategory(models.Model):
+    name = models.CharField(
+        verbose_name='Категория товара',
+        max_length=64,
+    )
+
+    class Meta:
+        verbose_name_plural = "Категория товара"
+
+    def __str__(self):
+        return self.name
+
+
 class ProductList (models.Model):
     name = models.CharField(
         verbose_name='Название товара',
@@ -33,8 +46,15 @@ class ProductList (models.Model):
         auto_now_add=True,
     )
 
+    category = models.ManyToManyField(
+        ProductCategory,
+        verbose_name='Категория товара',
+    )
+
     class Meta:
         verbose_name_plural = "Список товаров"
 
     def __str__(self):
         return self.name
+
+

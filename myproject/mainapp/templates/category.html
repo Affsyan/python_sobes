@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Главная</title>
-	<link rel="stylesheet" type="text/css" href="static/myproject/style.css">
+	<link rel="stylesheet" type="text/css" href="/static/mainapp/style.css">
 	<link rel="stylesheet" href="">
 </head>
 <body>
@@ -12,6 +12,12 @@
         <li><a href="/admin">Админка</a></li>
         <li><a href="/category">Каталог товаров</a></li>
     </ul>
+    <div style="text-align: center; margin-top: 15px;">
+        <a href="/category"><button>Все</button></a>
+        {% for object in category %}
+            <a href="{% url 'category' pk=object.id %}"><button>{{object.name}}</button></a>
+        {% endfor %}
+    </div>
     <table class="table">
     <tr>
         <th>
