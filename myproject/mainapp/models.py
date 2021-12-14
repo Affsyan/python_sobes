@@ -1,10 +1,18 @@
 from django.db import models
+from django.contrib.sites.models import Site
 
 
 class ProductCategory(models.Model):
     name = models.CharField(
         verbose_name='Категория товара',
         max_length=64,
+    )
+
+    site = models.ForeignKey(
+        Site,
+        on_delete=models.CASCADE,
+        null=True,
+        verbose_name='Сайты',
     )
 
     class Meta:
@@ -49,6 +57,11 @@ class ProductList (models.Model):
     category = models.ManyToManyField(
         ProductCategory,
         verbose_name='Категория товара',
+    )
+
+    site = models.ManyToManyField(
+        Site,
+        verbose_name='Сайты',
     )
 
     class Meta:
