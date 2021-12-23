@@ -1,3 +1,4 @@
+from django.contrib.sites.managers import CurrentSiteManager
 from django.db import models
 from django.contrib.sites.models import Site
 
@@ -14,6 +15,9 @@ class ProductCategory(models.Model):
         null=True,
         verbose_name='Сайты',
     )
+
+    objects = models.Manager()
+    on_site = CurrentSiteManager()
 
     class Meta:
         verbose_name_plural = "Категория товара"
@@ -63,6 +67,9 @@ class ProductList (models.Model):
         Site,
         verbose_name='Сайты',
     )
+
+    objects = models.Manager()
+    on_site = CurrentSiteManager()
 
     class Meta:
         verbose_name_plural = "Список товаров"
