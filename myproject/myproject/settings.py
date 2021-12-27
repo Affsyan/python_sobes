@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-d)&pnzslaooelk0qc639z0(1r22v5)f7s0+8fo-3ig83j_!=09
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','0.0.0.0','web']
 
 
 # Application definition
@@ -79,8 +79,12 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'test',
+        'USER': 'affsyan',
+        'PASSWORD': 'qwe123',
+        'HOST': 'db',
+        'PORT': '5432'
     }
 }
 
@@ -122,6 +126,7 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / '..' / 'nginx' /'static'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "templates", "../static", ),
