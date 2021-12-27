@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Главная</title>
+	<link rel="stylesheet" type="text/css" href="/static/mainapp/style.css">
+	<link rel="stylesheet" href="">
+</head>
+<body>
+    <ul class="hr">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/admin">Админка</a></li>
+        <li><a href="/category">Каталог товаров</a></li>
+    </ul>
+    <div style="text-align: center; margin-top: 15px;">
+        <a href="/category"><button>Все</button></a>
+        {% for object in category %}
+            <a href="{% url 'category' pk=object.id %}"><button>{{object.name}}</button></a>
+        {% endfor %}
+    </div>
+    <table class="table">
+    <tr>
+        <th>
+            Имя товара
+        </th>
+        <th>
+            Цена
+        </th>
+        <th>
+            Колличество
+        </th>
+        <th>
+            Ед. измерения
+        </th>
+        <th>
+            Имя поставщика
+        </th>
+        <th>
+            Дата добавления
+        </th>
+        <th>
+            Категория
+        </th>
+    </tr>
+    {% for object in products %}
+    <tr>
+        <td>{{ object.name }}</td>
+        <td>{{ object.price }}</td>
+        <td>{{ object.quantity }}</td>
+        <td>{{ object.unit }}</td>
+        <td>{{ object.supplier_name }}</td>
+        <td>{{ object.data }}</td>
+        <td>{% for o in object.category.all %} {{o.name}} {% endfor %}</td>
+    </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>
